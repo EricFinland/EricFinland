@@ -27,7 +27,7 @@
 - 💼 LinkedIn: https://www.linkedin.com/in/eric-catalano/
 - 🐙 Github (counterintuitive) :https://github.com/EricFinland
 - ⚛︎ Stackoverflow : https://stackoverflow.com/users/32206976/eric-catalano
-- DreamIT (Join Waitlist): https://dreamit.build/
+- DreamIT ⋆｡ﾟ☁︎｡⋆｡ ﾟ☾ ﾟ｡⋆ (Join Waitlist): https://dreamit.build/
 
 
 <a href="https://www.linkedin.com/in/eric-catalano/">
