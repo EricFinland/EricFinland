@@ -10,10 +10,9 @@
 - ⚡ I like building stuff that actually does cool shit
 
 ## 🧰 Tech Stack
-![C++](https://img.shields.io/badge/-C++-00599C?style=flat&logo=cplusplus)
-![Rust](https://img.shields.io/badge/-Rust-000000?style=flat&logo=rust)
-![React](https://img.shields.io/badge/-React-61DAFB?style=flat&logo=react)
-![Python](https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python)
+
+![My Skills](https://skillicons.dev/icons?i=arduino,cloudflare,css,discord,git,github,html,java,js,python,react,stackoverflow,ts,vscode)
+
 
 ## 📫 Contact
 - 🌐 Website: https://ericcatalano.dev
