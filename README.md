@@ -10,7 +10,7 @@
 - ⚡ I like building stuff hardware or software
 
 ## 🎆 Tech Stack
-![Languages](https://skillicons.dev/icons?i=c,cpp,python,rust,js,ts,react)
+![Languages](https://skillicons.dev/icons?i=c,cpp,python,C,C++,rust,js,ts,react)
 
 ## ⚡ Hardware & Embedded
 - PCB design & layout (Altium Designer, KiCad)
@@ -18,7 +18,8 @@
 - Power electronics & sensor integration
 
 ## 🛠️ Tools
-![Tools](https://skillicons.dev/icons?i=git,github,linux,vscode,docker,npm)
+![Tools](https://skillicons.dev/icons?i=git,github,linux,vscode,npm,cloudflare,discord,stackoverflow
+)
 
 
 ## 📫 Contact
