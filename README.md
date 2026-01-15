@@ -10,8 +10,15 @@
 - ⚡ I like building stuff that actually does cool shit
 
 ## 🧰 Tech Stack
+![Languages](https://skillicons.dev/icons?i=c,cpp,python,rust,js,ts,react)
 
-![My Skills](https://skillicons.dev/icons?i=arduino,cloudflare,css,discord,git,github,html,java,js,python,react,stackoverflow,ts,vscode)
+## ⚡ Hardware & Embedded
+- PCB design & layout (Altium Designer, KiCad)
+- Embedded systems (ESP32, STM32)
+- Power electronics & sensor integration
+
+## 🛠️ Tools
+![Tools](https://skillicons.dev/icons?i=git,github,linux,vscode,docker)
 
 
 ## 📫 Contact
