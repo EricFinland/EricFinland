@@ -2,7 +2,7 @@
 
 🚀 EECS @ UC Berkeley  
 💻 Embedded systems, robotics, and game engines  
-🛠️ STAR Rocketry | Berkeley Formula Racing  
+🛠️ STAR Rocketry | Berkeley Formula Racing  | SWE @ DreamIT
 
 ## 🧠 About Me
 - 🔭 Currently working on avionics & PCB design
