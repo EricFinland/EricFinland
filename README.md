@@ -2,7 +2,6 @@
 
 🚀 EECS @ UC Berkeley  
 💻 Embedded systems, robotics, Software Engineering    
-            
 🛠️ STAR Rocketry | Berkeley Formula Racing  | SWE @ DreamIT
 
 ## 🧠 About Me
