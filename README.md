@@ -1,15 +1,15 @@
 # Hey! I'm Eric 👋
 
-🚀 EECS @ UC Berkeley  
+🎲 EECS @ UC Berkeley  
 💻 Embedded systems, robotics, Software Engineering    
 🛠️ STAR Rocketry | Berkeley Formula Racing  | SWE @ DreamIT
 
-## 🧠 About Me
+## 🌌 About Me
 - 🔭 Currently working on Full Stack, DevOps/Cloud, AI/ML integration
 - 🌱 Learning Rust, Vulkan, and low-level systems
 - ⚡ I like building stuff hardware or software
 
-## 🧰 Tech Stack
+## 🎆 Tech Stack
 ![Languages](https://skillicons.dev/icons?i=c,cpp,python,rust,js,ts,react)
 
 ## ⚡ Hardware & Embedded
@@ -18,7 +18,7 @@
 - Power electronics & sensor integration
 
 ## 🛠️ Tools
-![Tools](https://skillicons.dev/icons?i=git,github,linux,vscode,docker)
+![Tools](https://skillicons.dev/icons?i=git,github,linux,vscode,docker,npm)
 
 
 ## 📫 Contact
