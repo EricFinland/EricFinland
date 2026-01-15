@@ -26,6 +26,7 @@
 - 🌐 Website: https://ericcatalano.dev
 - 💼 LinkedIn: https://www.linkedin.com/in/eric-catalano/
 - 🐙 Github (counterintuitive) :https://github.com/EricFinland
+- ⚛︎ Stackoverflow : https://stackoverflow.com/users/32206976/eric-catalano
 
 
 <a href="https://www.linkedin.com/in/eric-catalano/">
