@@ -25,8 +25,6 @@
 - 🌐 Website: https://ericcatalano.dev
 - 💼 LinkedIn: https://linkedin.com/in/yourname
 
-## Connect with me lol get my linkedin up!
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Eric%20Catalano-blue?logo=linkedin&style=for-the-badge)](https://www.linkedin.com/in/eric-catalano/)
 
 <a href="https://www.linkedin.com/in/eric-catalano/">
 <pre>
@@ -39,7 +37,7 @@
 </pre>
 </a>
 
-[plez connect with me and send me a msg or sum im rlly bored ngl I code stuff ig yeah.... why are u even here like who reads my github stuff](https://www.linkedin.com/in/eric-catalano/)
+
 
 
 
