@@ -1,4 +1,4 @@
-# Hey! I'm Eric 👋
+# Hey! I'm Eric 
 
 🎲 EECS @ UC Berkeley  
 💻 Embedded systems, robotics, Software Engineering    
