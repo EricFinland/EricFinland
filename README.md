@@ -12,12 +12,12 @@
 ## 🎆 Tech Stack
 ![Languages](https://skillicons.dev/icons?i=c,cpp,python,rust,js,ts,java,react,css,html,robloxstudio)
 
-## ⚡ Hardware & Embedded
+## 🎇 Hardware & Embedded
 - PCB design & layout (Altium Designer, KiCad)
 - Embedded systems (ESP32 & STM32 my favorites)
 - Power electronics & sensor integration
 
-## 🛠️ Tools
+## 🖇 Tools
 ![Tools](https://skillicons.dev/icons?i=git,github,linux,vscode,npm,cloudflare,discord,stackoverflow,arduino,vercel,vscode,windows
 )
 
