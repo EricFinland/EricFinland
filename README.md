@@ -24,7 +24,8 @@
 
 ## 📫 Contact
 - 🌐 Website: https://ericcatalano.dev
-- 💼 LinkedIn: https://linkedin.com/in/yourname
+- 💼 LinkedIn: https://www.linkedin.com/in/eric-catalano/
+- 🐙 Github (counterintuitive) :https://github.com/EricFinland
 
 
 <a href="https://www.linkedin.com/in/eric-catalano/">
