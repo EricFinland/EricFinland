@@ -153,7 +153,7 @@ def build_svg():
     style = (
         "<style>"
         f"text{{font-family:{FONT};font-size:{FONT_SIZE}px;"
-        "white-space:pre;dominant-baseline:middle}}"
+        "white-space:pre;dominant-baseline:middle}"
         "</style>"
     )
     header = (
