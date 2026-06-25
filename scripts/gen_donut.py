@@ -22,12 +22,29 @@ THETA_STEP = 0.07
 PHI_STEP = 0.02
 
 # --- animation ---
-N_FRAMES = 120
-DURATION_S = 6.0                # full loop length
-A_TURNS = 2                     # full rotations on the A axis over the loop
-B_TURNS = 1                     # full rotations on the B axis over the loop
-DA = 2 * math.pi * A_TURNS / N_FRAMES
-DB = 2 * math.pi * B_TURNS / N_FRAMES
+N_FRAMES = 150
+DURATION_S = 7.5                # full loop length
+A_TURNS = 3                     # net full turns on the A axis over one loop
+B_TURNS = 2                     # net full turns on the B axis over one loop
+
+# Wiggle terms layered on the steady turns to make the tumble feel random and
+# jiggly. Each is (frequency, amplitude_radians, phase). Frequencies are whole
+# numbers on purpose: integer-frequency sines (and their derivatives) return to
+# the same value at t=0 and t=1, so orientation AND speed match exactly at the
+# loop seam -- the motion looks chaotic but loops with no jump or stutter.
+A_WIGGLE = [(1, 0.85, 0.0), (2, 0.55, 1.3), (3, 0.40, 3.0), (5, 0.30, 2.1)]
+B_WIGGLE = [(1, 0.90, 0.7), (2, 0.60, 2.4), (4, 0.45, 0.5), (7, 0.22, 4.0)]
+
+
+def spin_angles(t):
+    """Return (A, B) tumble angles at loop fraction t in [0, 1)."""
+    a = 2 * math.pi * A_TURNS * t
+    for f, amp, ph in A_WIGGLE:
+        a += amp * math.sin(2 * math.pi * f * t + ph)
+    b = 2 * math.pi * B_TURNS * t
+    for f, amp, ph in B_WIGGLE:
+        b += amp * math.sin(2 * math.pi * f * t + ph)
+    return a, b
 
 # --- layout (SVG units) ---
 VB_W, VB_H = 640, 430
@@ -146,11 +163,9 @@ def build_svg():
     # render every frame's grid first so we can crop the canvas tight to the
     # donut (no terminal frame, transparent background, floating shape)
     grids = []
-    A, B = 0.0, 0.0
-    for _ in range(N_FRAMES):
-        grids.append(render_frame(A, B))
-        A += DA
-        B += DB
+    for i in range(N_FRAMES):
+        a, b = spin_angles(i / N_FRAMES)
+        grids.append(render_frame(a, b))
 
     min_c, max_c, min_r, max_r = W, -1, H, -1
     for g in grids:
