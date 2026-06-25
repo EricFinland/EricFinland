@@ -143,12 +143,37 @@ def frame_svg(grid, frame_index):
 
 
 def build_svg():
-    frames = []
+    # render every frame's grid first so we can crop the canvas tight to the
+    # donut (no terminal frame, transparent background, floating shape)
+    grids = []
     A, B = 0.0, 0.0
-    for i in range(N_FRAMES):
-        frames.append(frame_svg(render_frame(A, B), i))
+    for _ in range(N_FRAMES):
+        grids.append(render_frame(A, B))
         A += DA
         B += DB
+
+    min_c, max_c, min_r, max_r = W, -1, H, -1
+    for g in grids:
+        for r in range(H):
+            row = g[r]
+            for c in range(W):
+                if row[c] >= 0:
+                    if c < min_c:
+                        min_c = c
+                    if c > max_c:
+                        max_c = c
+                    if r < min_r:
+                        min_r = r
+                    if r > max_r:
+                        max_r = r
+
+    pad = 14
+    vb_x = BLOCK_X + min_c * CHAR_W - pad
+    vb_w = (max_c - min_c + 1) * CHAR_W + 2 * pad
+    vb_y = BLOCK_Y0 + min_r * LINE_H - FONT_SIZE - pad
+    vb_h = (max_r - min_r) * LINE_H + 2 * FONT_SIZE + 2 * pad
+
+    frames = [frame_svg(grids[i], i) for i in range(N_FRAMES)]
 
     style = (
         "<style>"
@@ -158,23 +183,12 @@ def build_svg():
     )
     header = (
         f'<svg xmlns="http://www.w3.org/2000/svg" width="100%" '
-        f'viewBox="0 0 {VB_W} {VB_H}" role="img" xml:space="preserve">'
+        f'viewBox="{vb_x:.1f} {vb_y:.1f} {vb_w:.1f} {vb_h:.1f}" '
+        f'role="img" xml:space="preserve">'
         f"<title>Eric Catalano - spinning ASCII donut</title>"
-        f"<desc>A 3D torus rendered in ASCII characters, spinning in a "
-        f"terminal window.</desc>"
+        f"<desc>A 3D torus rendered in ASCII characters, spinning.</desc>"
     )
-    chrome = (
-        f'<rect x="0.5" y="0.5" width="{VB_W - 1}" height="{VB_H - 1}" rx="16" '
-        f'fill="#0b1020" stroke="#1e293b" stroke-width="1"/>'
-        '<circle cx="28" cy="28" r="6" fill="#ff5f56"/>'
-        '<circle cx="48" cy="28" r="6" fill="#ffbd2e"/>'
-        '<circle cx="68" cy="28" r="6" fill="#27c93f"/>'
-        f'<text x="90" y="32" fill="#64748b" font-size="13">'
-        f'~/eric.catalano $ ./render</text>'
-        f'<line x1="0" y1="52" x2="{VB_W}" y2="52" stroke="#1e293b" '
-        f'stroke-width="1"/>'
-    )
-    return header + style + chrome + "".join(frames) + "</svg>"
+    return header + style + "".join(frames) + "</svg>"
 
 
 def main():

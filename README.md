@@ -1,4 +1,6 @@
-<a href="https://ericcatalano.dev"><img src="assets/donut.svg?v=3" alt="spinning ascii donut" width="100%"></a>
+<div align="center">
+  <a href="https://ericcatalano.dev"><img src="assets/donut.svg?v=4" alt="spinning ascii donut" width="360"></a>
+</div>
 
 # Hey! I'm Eric 
 
