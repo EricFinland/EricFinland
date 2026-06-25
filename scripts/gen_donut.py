@@ -93,9 +93,27 @@ def esc(s):
 
 
 def frame_svg(grid, frame_index):
-    """Emit one <g> holding per-band <text> with column-aligned tspans."""
-    delay = -(frame_index * (DURATION_S / N_FRAMES))
-    parts = [f'<g class="f" style="animation-delay:{delay:.3f}s">']
+    """Emit one <g> holding per-band <text> with column-aligned tspans.
+
+    Visibility is driven by a SMIL <animate> on opacity (not CSS keyframes):
+    GitHub serves README SVGs through an image proxy that runs SMIL but not
+    CSS animation, so each frame toggles opacity 0->1 only during its slice.
+    """
+    a = frame_index / N_FRAMES
+    b_end = (frame_index + 1) / N_FRAMES
+    if frame_index == 0:
+        values, keytimes = "1;1;0;0", f"0;{b_end:.5f};{b_end:.5f};1"
+    elif frame_index == N_FRAMES - 1:
+        values, keytimes = "0;0;1;1", f"0;{a:.5f};{a:.5f};1"
+    else:
+        values = "0;0;1;1;0;0"
+        keytimes = f"0;{a:.5f};{a:.5f};{b_end:.5f};{b_end:.5f};1"
+    anim = (
+        f'<animate attributeName="opacity" dur="{DURATION_S}s" '
+        f'repeatCount="indefinite" calcMode="linear" '
+        f'values="{values}" keyTimes="{keytimes}"/>'
+    )
+    parts = [f'<g opacity="0">{anim}']
     for b, (_hi, color) in enumerate(BANDS):
         tspans = []
         for row in range(H):
@@ -136,8 +154,6 @@ def build_svg():
         "<style>"
         f"text{{font-family:{FONT};font-size:{FONT_SIZE}px;"
         "white-space:pre;dominant-baseline:middle}}"
-        ".f{opacity:0;animation:cyc " + f"{DURATION_S}s" + " linear infinite}"
-        "@keyframes cyc{0%,0.83%{opacity:1}0.84%,100%{opacity:0}}"
         "</style>"
     )
     header = (
