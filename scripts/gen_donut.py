@@ -14,7 +14,10 @@ import math
 import os
 
 # --- ASCII grid ---
-W, H = 72, 24
+# Grid is intentionally larger than the donut so the zoom/breathing pulse has
+# room to grow without clipping the edges. The final SVG is cropped tight to
+# the donut's actual extent, so the extra margin costs nothing in the output.
+W, H = 96, 34
 RAMP = ".,-~:;=!*#$@"          # 12 brightness levels, dim -> bright
 K = 15.0                        # projection scale (distance scaling)
 XFAC = 1.6                      # horizontal stretch so the torus reads as round
@@ -46,13 +49,27 @@ def spin_angles(t):
         b += amp * math.sin(2 * math.pi * f * t + ph)
     return a, b
 
+
+# Breathing zoom: a gentle scale pulse on top of the spin. Whole-number
+# frequencies keep it seamless at the loop seam (same as the wiggle). Keep the
+# total amplitude modest so the zoomed-in donut still fits the padded grid.
+ZOOM = [(2, 0.085, 0.0), (3, 0.045, 1.6)]
+
+
+def zoom_at(t):
+    """Return the projection-scale multiplier at loop fraction t."""
+    z = 1.0
+    for f, amp, ph in ZOOM:
+        z += amp * math.sin(2 * math.pi * f * t + ph)
+    return z
+
+
 # --- layout (SVG units) ---
-VB_W, VB_H = 640, 430
 CHAR_W = 7.5
 LINE_H = 13.7
 FONT_SIZE = 13
-BLOCK_X = (VB_W - W * CHAR_W) / 2     # centered horizontally
-BLOCK_Y0 = 92                          # first baseline
+BLOCK_X = 30                           # text origin x (final SVG is cropped)
+BLOCK_Y0 = 40                          # first baseline (final SVG is cropped)
 FONT = "'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace"
 
 # --- luminance bands: (max ramp index inclusive, color) dim -> bright ---
@@ -70,12 +87,13 @@ def band_of(ramp_idx):
     return len(BANDS) - 1
 
 
-def render_frame(A, B):
+def render_frame(A, B, zoom=1.0):
     """Return a 2D list [row][col] of ramp indices, or -1 for empty cells."""
     grid = [[-1] * W for _ in range(H)]
     zbuf = [[0.0] * W for _ in range(H)]
     cA, sA = math.cos(A), math.sin(A)
     cB, sB = math.cos(B), math.sin(B)
+    Kz = K * zoom                   # breathing zoom scales the projection
 
     theta = 0.0
     while theta < 2 * math.pi:
@@ -89,8 +107,8 @@ def render_frame(A, B):
             y = ox * (sB * cp - sA * cB * sp) + oy * cA * cB
             z = 5 + cA * ox * sp + oy * sA
             ooz = 1.0 / z
-            xp = int(W / 2 + XFAC * K * ooz * x)
-            yp = int(H / 2 - K * ooz * y)
+            xp = int(W / 2 + XFAC * Kz * ooz * x)
+            yp = int(H / 2 - Kz * ooz * y)
             lum = (cp * ct * sB - cA * ct * sp - sA * st
                    + cB * (cA * st - ct * sA * sp))
             if 0 <= yp < H and 0 <= xp < W and lum > 0:
@@ -164,8 +182,9 @@ def build_svg():
     # donut (no terminal frame, transparent background, floating shape)
     grids = []
     for i in range(N_FRAMES):
-        a, b = spin_angles(i / N_FRAMES)
-        grids.append(render_frame(a, b))
+        t = i / N_FRAMES
+        a, b = spin_angles(t)
+        grids.append(render_frame(a, b, zoom_at(t)))
 
     min_c, max_c, min_r, max_r = W, -1, H, -1
     for g in grids:

@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://ericcatalano.dev"><img src="assets/donut.svg?v=5" alt="spinning ascii donut" width="360"></a>
+  <a href="https://ericcatalano.dev"><img src="assets/donut.svg?v=6" alt="spinning ascii donut" width="360"></a>
 </div>
 
 # Hey! I'm Eric 
