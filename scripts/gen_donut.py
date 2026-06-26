@@ -25,10 +25,26 @@ THETA_STEP = 0.07
 PHI_STEP = 0.02
 
 # --- animation ---
-N_FRAMES = 150
-DURATION_S = 7.5                # full loop length
+N_FRAMES = 180
+DURATION_S = 9.0                # full loop length
 A_TURNS = 3                     # net full turns on the A axis over one loop
 B_TURNS = 2                     # net full turns on the B axis over one loop
+
+# Pace envelope: a periodic "how fast is the clock right now" curve. The frame
+# loop advances the animation phase by this pace each frame instead of a fixed
+# step, so the whole donut eases into slow drift and back to full-speed tumble.
+# Each term is (frequency, amplitude, phase); keep total amplitude < 1 so the
+# pace never hits zero (the phase must keep moving forward). Because the curve
+# is periodic, the slow/fast rhythm loops seamlessly too.
+PACE = [(1, 0.62, 0.0), (2, 0.22, 2.1)]
+
+
+def pace(t):
+    """Return the relative clock speed at loop fraction t (always > 0)."""
+    p = 1.0
+    for f, amp, ph in PACE:
+        p += amp * math.sin(2 * math.pi * f * t + ph)
+    return p
 
 # Wiggle terms layered on the steady turns to make the tumble feel random and
 # jiggly. Each is (frequency, amplitude_radians, phase). Frequencies are whole
@@ -180,11 +196,17 @@ def frame_svg(grid, frame_index):
 def build_svg():
     # render every frame's grid first so we can crop the canvas tight to the
     # donut (no terminal frame, transparent background, floating shape)
+    # Warp the clock: each frame advances the phase by the local pace, so slow
+    # stretches spend many frames covering little motion and fast stretches fewer.
+    paces = [pace(i / N_FRAMES) for i in range(N_FRAMES)]
+    total = sum(paces)
     grids = []
+    cum = 0.0
     for i in range(N_FRAMES):
-        t = i / N_FRAMES
-        a, b = spin_angles(t)
-        grids.append(render_frame(a, b, zoom_at(t)))
+        tau = cum / total           # warped loop phase in [0, 1)
+        cum += paces[i]
+        a, b = spin_angles(tau)
+        grids.append(render_frame(a, b, zoom_at(tau)))
 
     min_c, max_c, min_r, max_r = W, -1, H, -1
     for g in grids:
