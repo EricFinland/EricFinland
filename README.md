@@ -2,16 +2,9 @@
   <a href="https://ericcatalano.dev"><img src="assets/donut.svg?v=7" alt="spinning ascii donut" width="360"></a>
 </div>
 
-# Hey! I'm Eric 
-
+# Hi I'm Eric 
 🎲 EECS @ UC Berkeley  
-💻 Embedded systems, robotics, Software Engineering, AI/ML Engineering  
-🛠️ STAR Rocketry | Berkeley Formula Racing  | SWE @ DreamIT
 
-## 🌌 About Me
-- 🔭 Currently working on Full Stack, DevOps/Cloud, AI/ML integration
-- 🌱 Learning Rust, Vulkan, and low-level systems
-- ⚡ I like building things end to end, software, systems, and AI
 
 ## 🎆 Tech Stack
 ![Languages](https://skillicons.dev/icons?i=c,cpp,python,rust,js,ts,java,react,css,html,robloxstudio)
